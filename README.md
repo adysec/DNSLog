@@ -19,6 +19,28 @@ DNSLog Dashboard 是一个基于 Rust 的 DNS 日志记录平台，集成了 DNS
   - [rand](https://github.com/rust-random/rand)
   - [serde](https://github.com/serde-rs/serde)
 
+## DNS 配置方法
+
+1. **配置A记录允许通过域名访问web页面：**
+```bash
+#名称 类型 内容
+dnslog  A  xxx.xxx.xxx.xxx
+```
+![图片](https://github.com/user-attachments/assets/f435df2e-3722-45b5-8ed3-0c54f4f61d3e)
+
+
+2. **配置ns服务器：**
+```bash
+#名称 类型 内容
+ns1  A  xxx.xxx.xxx.xxx
+ns2  A  xxx.xxx.xxx.xxx
+dns  ns  ns1.xxx.com
+dns  ns  ns2.xxx.com
+```
+![图片](https://github.com/user-attachments/assets/04b65e6e-c3a5-454a-932a-684511536f41)
+![图片](https://github.com/user-attachments/assets/3e2d1f5f-dcbc-4a5f-b255-eb9b43aa447e)
+
+
 ## 安装与构建
 
 1. **克隆代码：**
