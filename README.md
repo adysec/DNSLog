@@ -7,6 +7,7 @@ DNSLog Dashboard 是一个基于 Rust 的 DNS 日志记录平台，集成了 DNS
 ## DNS 配置方法
 
 1. **配置A记录允许通过域名访问web页面：**
+通过添加如下 A 记录，将子域名（如 dnslog.xxx.com）指向平台 Web 服务的服务器 IP，实现页面访问。
 ```bash
 #名称 类型 内容
 dnslog  A  xxx.xxx.xxx.xxx
@@ -15,6 +16,7 @@ dnslog  A  xxx.xxx.xxx.xxx
 
 
 2. **配置ns服务器：**
+通过如下记录，将指定域（如 dns.xxx.com）的权威 DNS 服务器指向自建的 DNS 服务器，从而接收并记录所有针对该域及其子域的 DNS 查询请求。
 ```bash
 #名称 类型 内容
 ns1  A  xxx.xxx.xxx.xxx
@@ -24,6 +26,11 @@ dns  ns  ns2.xxx.com
 ```
 ![图片](https://github.com/user-attachments/assets/04b65e6e-c3a5-454a-932a-684511536f41)
 ![图片](https://github.com/user-attachments/assets/3e2d1f5f-dcbc-4a5f-b255-eb9b43aa447e)
+
+3. **查看接收到的dns请求结果：**
+当目标系统在探测过程中触发对 *.dns.xxx.com 的解析请求时，请求将被路由至我们自建的 DNS 服务器，平台即可记录并显示这些请求日志，用于安全测试中的 DNS 外联探测与验证。
+`注：如对方使用的dns服务器存在负载均衡的情况，可能造成大量dnslog请求记录，并非存在多个触发点`
+![图片](https://github.com/user-attachments/assets/6717f727-7e5c-4ad1-907a-335bc2c742ea)
 
 ## 安装与构建
 
